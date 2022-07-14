@@ -1,2 +1,41 @@
 <?php
+use Drupal\node\NodeInterface;
+
+function welcome_module_node_update(NodeInterface $node)
+{
+  //dump($node);
+  if (!$node->isNew() && $node->original->get('field_blog_post_type')->target_id == NULL
+    && $node->get('field_blog_post_type')->target_id != NULL) {
+    $term = $node->get('field_blog_post_type')->entity;
+    $term->get('field_counter')->setValue($term->get('field_counter')->value + 1);
+    $term->save();
+  } elseif (!$node->isNew() && $node->original->get('field_blog_post_type')->target_id != NULL
+    && $node->get('field_blog_post_type')->target_id == NULL) {
+    $term = $node->original->get('field_blog_post_type')->entity;
+    $term->get('field_counter')->setValue($term->get('field_counter')->value - 1);
+    $term->save();
+  } elseif (
+    $node->get('field_blog_post_type')->target_id !=
+    $node->original->get('field_blog_post_type')->target_id) {
+    $term = $node->get('field_blog_post_type')->entity;
+    $term->get('field_counter')->setValue($term->get('field_counter')->value + 1);
+    $term->save();
+    $term = $node->original->get('field_blog_post_type')->entity;
+    $term->get('field_counter')->setValue($term->get('field_counter')->value - 1);
+    $term->save();
+  }
+}
+
+function welcome_module_node_delete(NodeInterface $node){
+  $term = $node->get('field_blog_post_type')->entity;
+  $term->get('field_counter')->setValue($term->get('field_counter')->value - 1);
+  $term->save();
+}
+
+function welcome_module_node_insert(NodeInterface $node){
+  $term = $node->get('field_blog_post_type')->entity;
+  $term->get('field_counter')->setValue($term->get('field_counter')->value + 1);
+  $term->save();
+}
+
 

@@ -4,6 +4,7 @@ namespace Drupal\welcome_module\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
 
 
 /**
@@ -25,11 +26,15 @@ class BlogCounterBlock extends BlockBase {
   public function blockForm($form, FormStateInterface $form_state) {
     $form = parent::blockForm($form, $form_state);
 
-    $config = $this->getConfiguration();
-
-    foreach ($terms as $term) {
-      $options[$term->id()] = $term->label();
-    }
+//    $config = $this->getConfiguration();
+//    $nids = \Drupal::entityQuery('node')
+//      ->condition('type', 'blog_post')
+//      ->condition('title', '%Some%', 'LIKE')
+//      ->execute();
+//    $nodes = Node::loadMultiple($nids);
+//    foreach ($terms as $term) {
+//      $options[$term->id()] = $term->label();
+//    }
 
     $form['hello_block_name'] = [
       '#type' => 'select',
