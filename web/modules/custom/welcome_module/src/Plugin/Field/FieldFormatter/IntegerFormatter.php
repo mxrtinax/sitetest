@@ -4,6 +4,8 @@ namespace Drupal\welcome_module\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 
 
@@ -38,7 +40,22 @@ class IntegerFormatter extends FormatterBase {
       $node = Node::load($item->value);
       // Render each element as markup.
       if ($node){
-        $element[$delta] = ['#markup' => $node->getTitle()];
+        /** @var File $file */
+        $file = $node->field_image->entity;
+        /** @var \Drupal\Core\Field\FieldItemList $field */
+        $field = $node->get('title');
+
+        $node->get('field_blog_post_type')->get(0)->entity;
+        foreach ($node->get('field_blog_post_type') as $item) {
+//          dump($item->entity);
+        }
+//        dump($field->getString());
+        //die;
+        $element[$delta] = ['#theme' => 'movie_card',
+          '#title' => $node->get('title')->value,
+          '#description' => $node->get('body')->getValue()[0]["value"],
+          '#image' => ImageStyle::load('large')->buildUrl($node->field_image->entity->getFileUri()),
+          '#date' => date("Y/m/d")];
       }
       else
         $element[$delta] = ['#markup' => "Random"];

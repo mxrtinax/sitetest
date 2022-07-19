@@ -1,0 +1,31 @@
+uuid: 2b4c5d63-0b43-46a2-b2e5-b36f1d35327c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.types.field_counter
+    - taxonomy.vocabulary.types
+  module:
+    - text
+id: taxonomy_term.types.default
+targetEntityType: taxonomy_term
+bundle: types
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_counter:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

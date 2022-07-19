@@ -1,0 +1,19 @@
+uuid: 0b37fa6f-4295-40e9-ab2f-641fa508f732
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_iso3
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_iso3
+field_name: field_iso3
+entity_type: taxonomy_term
+bundle: country
+label: ISO3
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,25 @@
+uuid: cb032b37-0162-4b07-bcd8-1e50691a8fe6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_counter
+    - taxonomy.vocabulary.types
+id: taxonomy_term.types.field_counter
+field_name: field_counter
+entity_type: taxonomy_term
+bundle: types
+label: Counter
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

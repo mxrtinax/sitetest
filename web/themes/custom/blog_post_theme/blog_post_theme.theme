@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the SASS Starterkit subtheme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function blog_post_theme_preprocess_movie_card(&$variables) {
+  $variables['date'] = date("Y/m/d");
+}
+/**
+ * Implements blog_post_theme_form_system_theme_settings_alter() for settings form.
+ *
+ * Replace Barrio setting options with subtheme ones.
+ *
+ * Example on how to alter theme settings form
+ */
+function blog_post_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  $form['components']['navbar']['blog_post_theme_navbar_top_background']['#options'] = [
+    'bg-primary' => t('Primary'),
+    'bg-secondary' => t('Secondary'),
+    'bg-light' => t('Light'),
+    'bg-dark' => t('Dark'),
+    'bg-white' => t('White'),
+    'bg-transparent' => t('Transparent'),
+  ];
+  $form['components']['navbar']['blog_post_theme_navbar_background']['#options'] = [
+    'bg-primary' => t('Primary'),
+    'bg-secondary' => t('Secondary'),
+    'bg-light' => t('Light'),
+    'bg-dark' => t('Dark'),
+    'bg-white' => t('White'),
+    'bg-transparent' => t('Transparent'),
+  ];
+}
+
+function blog_post_theme_preprocess_item_list(&$variables) {
+  $variables['xx'] = 'yy';
+  dump($variables);
+}
+
+/**
+ * Implements blog_post_theme_preprocess_HOOK().
+ */
+function blog_post_theme_preprocess_node(&$variables) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = $variables['node'];
+  if ($node->bundle() == 'article') {
+    if (!$node->get('field_blog_post_type')->isEmpty()) {
+      /** @var \Drupal\taxonomy\Entity\Term[] $terms */
+      $items = $variables['content']['field_blog_post_type']['#items'] ?? [];
+      foreach ($items as $delta => $item) {
+        /** @var \Drupal\taxonomy\Entity\Term $term */
+        $term = $item->entity;
+        $counter = $term->get('field_counter')->value;
+        $text = $variables['content']['field_blog_post_type'][$delta]['#title'];
+        $variables['content']['field_blog_post_type'][$delta]['#title'] = sprintf('%s - counter: %s', $text, $counter);
+      }
+    }
+  }
+  if ($node->bundle()=="event"){
+    if (!$node->hasField("field_country")){
+      return;
+    }
+    if ($node->get("field_country")->isEmpty()){
+      unset($variables["content"]["field_location"]);
+    }
+  }
+}

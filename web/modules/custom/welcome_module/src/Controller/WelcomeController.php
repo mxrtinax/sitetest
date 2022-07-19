@@ -12,6 +12,13 @@ use function Sodium\add;
 class WelcomeController {
 
   public function welcome() {
+    return [
+      '#theme' => 'movie_card',
+      '#title' => 'Dune',
+      '#description' => 'A nice movie',
+      '#image' => 'https://static.playtech.ro/wp-content/uploads/2021/10/dune-movie-poster-.jpg',
+      '#date' => date("Y/m/d")
+    ];
     $rows = [];
     $row = [];
     $nids = \Drupal::entityQuery('node')

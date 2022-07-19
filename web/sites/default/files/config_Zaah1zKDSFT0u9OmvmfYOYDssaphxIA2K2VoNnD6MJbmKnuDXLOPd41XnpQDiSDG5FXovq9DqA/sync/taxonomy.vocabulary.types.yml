@@ -1,0 +1,8 @@
+uuid: b67c5b1a-947e-4dfc-a23e-5c8b3822221c
+langcode: en
+status: true
+dependencies: {  }
+name: Types
+vid: types
+description: ''
+weight: 0

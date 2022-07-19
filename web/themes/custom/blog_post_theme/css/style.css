@@ -1,0 +1,19 @@
+/**
+ * @file
+ * Subtheme specific CSS.
+ */
+.movie-card{
+  margin-top: 10px;
+  padding: 10px;
+  background: rgb(205,205,205);
+  width: 50%;
+  height: 100%;
+  border: grey solid medium ;
+  border-radius: 5px;
+  justify-content: center;
+}
+.card-img{
+  height: 100px;
+  display: inline-block;
+  width: 80%;
+}

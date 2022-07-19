@@ -1,0 +1,12 @@
+{# [module]/templates/my-template.html.twig #}
+<div class="movie-card">
+<h1>Movie card</h1>
+
+<p>Title: {{ title }}</p>
+<p>Description: {{ description }}</p>
+  {% if image %}
+<img class="card-img" src="{{ image }}">
+  {% endif %}
+<p>Date: {{ date }}</p>
+</div>
+

@@ -1,0 +1,23 @@
+uuid: dcaf3f52-5eec-46e7-9a38-b9652e963c02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_id_blogpost_asemanator
+    - node.type.blog_post
+id: node.blog_post.field_id_blogpost_asemanator
+field_name: field_id_blogpost_asemanator
+entity_type: node
+bundle: blog_post
+label: 'Another blogpost ID'
+description: 'A sugestion for another blog post.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
