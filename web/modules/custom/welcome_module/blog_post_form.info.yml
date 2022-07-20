@@ -1,0 +1,6 @@
+name: Blog Post Form
+description: Creates a form.
+package: Custom
+
+type: module
+core_version_requirement: ^8 || ^9
