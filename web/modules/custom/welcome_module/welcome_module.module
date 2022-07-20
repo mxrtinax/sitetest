@@ -50,11 +50,11 @@ function welcome_module_node_update(NodeInterface $node) {
   }
 }
 
-function welcome_module_node_delete(NodeInterface $node){
-  $term = $node->get('field_blog_post_type')->entity;
-  $term->get('field_counter')->setValue($term->get('field_counter')->value - 1);
-  $term->save();
-}
+//function welcome_module_node_delete(NodeInterface $node){
+//  $term = $node->get('field_blog_post_type')->entity;
+//  $term->get('field_counter')->setValue($term->get('field_counter')->value - 1);
+//  $term->save();
+//}
 
 function welcome_module_node_insert(NodeInterface $node){
   if ($node->bundle()=="blog_post") {
