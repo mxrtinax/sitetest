@@ -79,7 +79,7 @@ class BlogPostForm extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-
+    //just a coment
     $title = $form_state->getValue('title');
     $accept = $form_state->getValue('accept');
 
