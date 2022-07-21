@@ -45,6 +45,10 @@ class ComposerStaticInite15bd7893f4a6452ab55d2bde45a2c59
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'ZipStream\\' => 10,
+        ),
         'W' => 
         array (
             'Webmozart\\PathUtil\\' => 19,
@@ -90,6 +94,7 @@ class ComposerStaticInite15bd7893f4a6452ab55d2bde45a2c59
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Cmf\\Component\\Routing\\' => 30,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
+            'Solarium\\' => 9,
             'SelfUpdate\\' => 11,
         ),
         'R' => 
@@ -101,12 +106,15 @@ class ComposerStaticInite15bd7893f4a6452ab55d2bde45a2c59
             'Psy\\' => 4,
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
+            'Psr\\Http\\Client\\' => 16,
+            'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
             'PhpParser\\' => 10,
         ),
         'M' => 
         array (
+            'MyCLabs\\Enum\\' => 13,
             'Masterminds\\' => 12,
         ),
         'L' => 
@@ -162,6 +170,10 @@ class ComposerStaticInite15bd7893f4a6452ab55d2bde45a2c59
     );
 
     public static $prefixDirsPsr4 = array (
+        'ZipStream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
+        ),
         'Webmozart\\PathUtil\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/path-util/src',
@@ -310,6 +322,10 @@ class ComposerStaticInite15bd7893f4a6452ab55d2bde45a2c59
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
         ),
+        'Solarium\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/solarium/solarium/src',
+        ),
         'SelfUpdate\\' => 
         array (
             0 => __DIR__ . '/..' . '/consolidation/self-update/src',
@@ -331,6 +347,14 @@ class ComposerStaticInite15bd7893f4a6452ab55d2bde45a2c59
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
             1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
+        'Psr\\Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'Psr\\EventDispatcher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/event-dispatcher/src',
+        ),
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
@@ -342,6 +366,10 @@ class ComposerStaticInite15bd7893f4a6452ab55d2bde45a2c59
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'MyCLabs\\Enum\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
         'Masterminds\\' => 
         array (

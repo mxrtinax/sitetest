@@ -1,7 +1,0 @@
-welcome_module.blog_post_form:
-  path: '/form/blogpostform'
-  defaults:
-    _form: 'Drupal\welcome_module\Form\BlogPostForm'
-    _title: 'Simple custom form example'
-  requirements:
-    _permission: 'access content'

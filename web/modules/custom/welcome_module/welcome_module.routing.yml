@@ -13,3 +13,11 @@ welcome_module.welcomes:
     _title: 'Welcome to My Module in Drupal 9'
   requirements:
     _permission: 'access content'
+
+welcome_module.blog_post_form:
+  path: '/form/blogpostform'
+  defaults:
+    _form: 'Drupal\welcome_module\Form\BlogPostForm'
+    _title: 'Simple custom form example'
+  requirements:
+    _permission: 'access content'

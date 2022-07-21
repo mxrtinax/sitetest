@@ -1143,7 +1143,7 @@ function template_preprocess_table(&$variables) {
  * @see https://www.drupal.org/node/1842756
  */
 function template_preprocess_item_list(&$variables) {
-  $variables['wrapper_attributes'] = new Attribute($variables['wrapper_attribugtes']);
+  $variables['wrapper_attributes'] = new Attribute($variables['wrapper_attributes']);
   foreach ($variables['items'] as &$item) {
     $attributes = [];
     // If the item value is an array, then it is a render array.

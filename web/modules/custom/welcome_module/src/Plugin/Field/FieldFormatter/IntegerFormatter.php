@@ -46,9 +46,9 @@ class IntegerFormatter extends FormatterBase {
         $field = $node->get('title');
 
         $node->get('field_blog_post_type')->get(0)->entity;
-        foreach ($node->get('field_blog_post_type') as $item) {
+        //foreach ($node->get('field_blog_post_type') as $item) {
 //          dump($item->entity);
-        }
+        //}
 //        dump($field->getString());
         //die;
         $element[$delta] = ['#theme' => 'movie_card',

@@ -4,6 +4,8 @@ namespace Drupal\welcome_module\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
 
 class BlogPostForm extends FormBase {
   /**
@@ -31,26 +33,45 @@ class BlogPostForm extends FormBase {
    *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $vids = \Drupal::entityQuery('taxonomy_term') //verificam daca termenul exista deja in vocabular
+    ->condition('vid', 'types')
+      ->execute();
+    $terms = Term::loadMultiple($vids);
+    $items = [];
+    foreach ($terms as $term){
+      $items[$term->id()] = $term -> label();
+    }
 
-    $form['description'] = [
-      '#type' => 'item',
-      '#markup' => $this->t('Please enter the title and accept the terms of use of the site.'),
-    ];
-
-
+//    title (textfield)
+//    description (textarea)
+//    blog post type (select cu toate tipurile de blog post type)
+//    image (widget de upload de fisiere)
     $form['title'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Title'),
-      '#description' => $this->t('Enter the title of the book. Note that the title must be at least 10 characters in length.'),
+      '#title' => $this->t('Blog post title'),
+      '#description' => $this->t('Enter the title of the blog post.'),
       '#required' => TRUE,
     ];
-
-    $form['accept'] = array(
-      '#type' => 'checkbox',
-      '#title' => $this
-        ->t('I accept the terms of use of the site'),
-      '#description' => $this->t('Please read and accept the terms of use'),
-    );
+    $form['description'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Description'),
+      '#description' => $this->t('Enter the content of your blog post.'),
+      '#required' => TRUE,
+    ];
+    $form['type'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Blog post type'),
+      '#description' => $this->t('Enter the type of your blog post.'),
+      '#options' => $items,
+      '#multiple' => TRUE,
+      '#required' => TRUE,
+    ];
+//    $form['accept'] = array(
+//      '#type' => 'checkbox',
+//      '#title' => $this
+//        ->t('I accept the terms of use of the site'),
+//      '#description' => $this->t('Please read and accept the terms of use'),
+//    );
 
 
     // Group submit handlers in an actions element with a key of "actions" so
@@ -79,19 +100,6 @@ class BlogPostForm extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-    //just a coment
-    $title = $form_state->getValue('title');
-    $accept = $form_state->getValue('accept');
-
-    if (strlen($title) < 10) {
-      // Set an error for the form element with a key of "title".
-      $form_state->setErrorByName('title', $this->t('The title must be at least 10 characters long.'));
-    }
-
-    if (empty($accept)){
-      // Set an error for the form element with a key of "accept".
-      $form_state->setErrorByName('accept', $this->t('You must accept the terms of use to continue'));
-    }
 
   }
 
@@ -109,12 +117,24 @@ class BlogPostForm extends FormBase {
 
     // Call the Static Service Container wrapper
     // We should inject the messenger service, but its beyond the scope of this example.
+    $title = $form_state->getValue('title');
+    $description = $form_state->getValue('description');
+    $node = Node::create([
+      'type'        => 'blog_post',
+      'title'       => $title,
+      'body'        => $description,
+      'field_blog_post_type' => $form_state->getValue('type'),
+
+      //'field_image' => $file
+    ]);
+    //dump($form_state->getValue('types'));
+    $node->save();
     $messenger = \Drupal::messenger();
     $messenger->addMessage('Title: '.$form_state->getValue('title'));
     $messenger->addMessage('Accept: '.$form_state->getValue('accept'));
 
     // Redirect to home
-    $form_state->setRedirect('<front>');
+    $form_state->setRedirect('welcome_module.welcome');
 
   }
 
